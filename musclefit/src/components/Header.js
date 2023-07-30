@@ -43,13 +43,13 @@ const Header = () => {
             </li>
             <li className="nav-item">
               <a href="#login" className="btn btn-primary nav-button" onClick={() => setShow(!show)}>
-                Login
+                Admin
               </a>
             </li>
          
             <li >
           <a href="#program" className="btn btn-primary nav-button">
-            Become Member
+           Sign Up
           </a>
           </li>
           </ul>
