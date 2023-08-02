@@ -1,88 +1,133 @@
+import React from "react";
 
-function App() {
+const Registration = () => {
   return (
     <div className="container mt-4">
-      <h2>Student Information</h2>
-      <div className="row">
-        <div className="col-md-4 mb-3">
-          <label htmlFor="firstName">First Name</label>
-          <input type="text" className="form-control" id="firstName" />
-        </div>
-        <div className="col-md-4 mb-3">
-          <label htmlFor="lastName">Last Name</label>
-          <input type="text" className="form-control" id="lastName" />
-        </div>
-        <div className="col-md-4 mb-3">
-          <label htmlFor="age">Age</label>
-          <input type="number" className="form-control" id="age" />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-md-4 mb-3">
-          <label htmlFor="gender">Gender</label>
-          <select className="form-control" id="gender">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div className="col-md-8 mb-3">
-          <label htmlFor="address">Address</label>
-          <input type="text" className="form-control" id="address" />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-md-6 mb-3">
-          <label htmlFor="email">Email</label>
-          <input type="email" className="form-control" id="email" />
-        </div>
-        <div className="col-md-6 mb-3">
-          <label htmlFor="phone">Phone</label>
-          <input type="tel" className="form-control" id="phone" />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-md-4 mb-3">
-          <label htmlFor="course">Course</label>
-          <input type="text" className="form-control" id="course" />
-        </div>
-        <div className="col-md-4 mb-3">
-          <label htmlFor="gpa">GPA</label>
-          <input type="text" className="form-control" id="gpa" />
-        </div>
-        <div className="col-md-4 mb-3">
-          <label htmlFor="admissionDate">Admission Date</label>
-          <input type="date" className="form-control" id="admissionDate" />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-md-4 mb-3">
-          <label htmlFor="graduationDate">Graduation Date</label>
-          <input type="date" className="form-control" id="graduationDate" />
-        </div>
-        <div className="col-md-4 mb-3">
-          <label htmlFor="parentName">Parent Name</label>
-          <input type="text" className="form-control" id="parentName" />
-        </div>
-        <div className="col-md-4 mb-3">
-          <label htmlFor="parentEmail">Parent Email</label>
-          <input type="email" className="form-control" id="parentEmail" />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-md-6 mb-3">
-          <label htmlFor="parentPhone">Parent Phone</label>
-          <input type="tel" className="form-control" id="parentPhone" />
-        </div>
-        <div className="col-md-6 mb-3">
-          <label htmlFor="comments">Comments</label>
-          <textarea className="form-control" id="comments" rows="3"></textarea>
-        </div>
-      </div>
-      <div class="d-grid gap-2 col-6 mx-auto">
-      <button className="btn btn-primary">Submit</button></div>
-    </div>
-      );
-}
+      <div className="cover-card">
+        <h2 className="cover-title">Registration Form</h2>
+        <form action="" className="reg-group">
+          <div className="row">
+            <div className="col-md-3 mb-3">
+              <label htmlFor="firstName">First Name</label>
+              <input type="text" className="form-control" id="firstName" />
+            </div>
+            <div className="col-md-4 mb-3">
+              <label htmlFor="lastName">Last Name</label>
+              <input type="text" className="form-control" id="lastName" />
+            </div>
+            <div className="col-md-2 mb-3">
+              <label htmlFor="gender">Gender</label>
+              <select className="form-control" id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div className="col-md-2 mb-3">
+              <label htmlFor="admissionDate">Date of Birth</label>
+              <input type="date" className="form-control" id="admissionDate" />
+            </div>
+            <div className="col-md-2 mb-3">
+              <label htmlFor="gender">ID Proof</label>
+              <select className="form-control" id="idproof">
+                <option value="pan">Pan</option>
+                <option value="aadhar">Aadhar</option>
+                <option value="otherid">Other ID's</option>
+              </select>
+            </div>
+            <div className="col-md-3 mb-3">
+              <label htmlFor="number">ID number</label>
+              <input type="tel" className="form-control" id="idnumber" />
+            </div>
+            <div className="col-md-3 mb-3">
+              <label htmlFor="phone">Phone number</label>
+              <input type="tel" className="form-control" id="phone" />
+            </div>
+            <div className="col-md-3 mb-3">
+              <label htmlFor="phone">Whatsapp number</label>
+              <input type="tel" className="form-control" id="whatsapp" />
+            </div>
+          </div>
 
-export default App;
+          <div className="row">
+            <div className="col-md-8 mb-3">
+              <label htmlFor="address">Address1(Street)</label>
+              <input type="text" className="form-control" id="address" />
+            </div>
+            <div className="col-md-3 mb-3">
+              <label htmlFor="address">Address2(Area)</label>
+              <input type="text" className="form-control" id="address2" />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-md-2 mb-3">
+              <label htmlFor="gpa">Pincode</label>
+              <input type="number" className="form-control" id="pincode" />
+            </div>
+            <div className="col-md-4 mb-3">
+              <label htmlFor="email">Email</label>
+              <input type="email" className="form-control" id="email" />
+            </div>
+            <div className="col-md-2 mb-3">
+              <label htmlFor="paymentMode">Payment Mode</label>
+              <select className="form-control" id="paymentMode">
+                <option value="upi">UPI</option>
+                <option value="neft/rtgs">NEFT/RTGS</option>
+                <option value="card">Debit/Credit Card</option>
+              </select>
+            </div>
+            <div className="col-md-3 mb-3">
+              <label htmlFor="emnumber">Emergency Contact no</label>
+              <input type="tel" className="form-control" id="emnumber" />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-md-3 mb-3">
+              <label htmlFor="membership">Membership Period</label>
+              <select className="form-control" id="membership">
+                <option value="monthly">Monthly</option>
+                <option value="quarterly">Quarterly</option>
+                <option value="halfyearly">Half-yearly</option>
+                <option value="yearly">Yearly</option>
+              </select>
+            </div>
+            <div className="col-md-3 mb-3">
+              <label htmlFor="height">Height in cm's</label>
+              <input type="number" className="form-control" id="height" />
+            </div>
+            <div className="col-md-3 mb-3">
+              <label htmlFor="weight">Weight in kg's</label>
+              <input type="number" className="form-control" id="weight" />
+            </div>
+            <div className="col-md-3 mb-3">
+              <label htmlFor="dateOfJoining">Date of Joining</label>
+              <input type="date" className="form-control" id="dateOfJoining" />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-md-2 mb-3">
+              <label htmlFor="graduationDate">Graduation Date</label>
+              <input type="date" className="form-control" id="graduationDate" />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-md-11 mb-3">
+              <label htmlFor="comments">Comments</label>
+              <textarea className="form-control" id="comments" rows="3"></textarea>
+            </div>
+          </div>
+
+          <div className="d-grid gap-1 col-6 mx-auto">
+            <button className="btn btn-primary">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default Registration;
