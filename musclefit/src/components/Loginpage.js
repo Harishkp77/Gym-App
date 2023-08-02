@@ -1,10 +1,12 @@
 import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Loginpage = () => {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const passwordRef = useRef(null);
+  const navigate = useNavigate(); 
   //const alphanumericRegex = /^[a-zA-Z0-9]+$/;
 
   const checklogin = (e) => {
@@ -21,13 +23,10 @@ const Loginpage = () => {
       setErrorMessage("Password should not contain spaces.");
     } else if (password.length > 15) {
       setErrorMessage("Password should not exceed 15 characters.");
-    } */else if (username === "admin" && password === "1111") {
-      setErrorMessage("Login successful");
-      setTimeout(() => {
-        setErrorMessage("");
-        setusername("");
-        setpassword("");
-      }, 5000);
+    } */
+    
+    else if (username === "admin" && password === "1111") {
+      navigate("/register");
     } else if (username === "admin") {
       setErrorMessage("Invalid password.");
     } else if (password === "1111") {
