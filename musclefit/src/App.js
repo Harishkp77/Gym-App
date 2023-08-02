@@ -13,9 +13,7 @@ import RegisterComponent from "./components/RegisterComponent";
 function App() {
   return (
     <Router>
-  
-
-      <Routes>
+        <Routes>
         <Route
          path="/"
           element={
