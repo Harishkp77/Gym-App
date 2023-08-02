@@ -9,13 +9,13 @@ import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
 import ScrollUp from "./components/ScrollUp";
 import Loginpage from "./components/Loginpage";
-import RegisterComponent from "./components/RegisterComponent"; 
+import RegisterComponent from "./components/RegisterComponent";
 function App() {
   return (
     <Router>
-        <Routes>
+      <Routes>
         <Route
-         path="/"
+          path="/"
           element={
             <>
               <Header />
