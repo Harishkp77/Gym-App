@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import ScrollUp from "./components/ScrollUp";
 import Loginpage from "./components/Loginpage";
 import RegisterComponent from "./components/RegisterComponent";
+import Signup from "./components/Signup";
 function App() {
   return (
     <Router>
@@ -30,6 +31,7 @@ function App() {
         />
         <Route path="/login" element={<Loginpage />} />
         <Route path="/register" element={<RegisterComponent />} />
+        <Route path="/signup" element={<Signup/>} />
       </Routes>
       <ScrollUp />
     </Router>

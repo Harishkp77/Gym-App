@@ -18,17 +18,32 @@ const db = mysql.createConnection({
 
 // Connect to MySQL
 db.connect((err) => {
-  if (err) throw err;
-  console.log("MySQL connected");
+  if (err) {
+    console.error("Database connection error:", err);
+  } else {
+    console.log(" MySQL Database connected");
+  }
 });
 
 // Route to handle form submission and save data to MySQL
 app.post("/register", (req, res) => {
   const registrationData = req.body;
 
-  // Insert data into the MySQL database
-  const sql = "INSERT INTO registrations SET ?";
-  db.query(sql, registrationData, (err, result) => {
+  const sqlquery = "INSERT INTO registrations SET ?";
+  db.query(sqlquery, registrationData, (err, result) => {
+    if (err) throw err;
+    console.log("Registration data inserted:", result);
+    res.send("Registration successful!");
+  });
+});
+
+
+
+app.post("/signup", (req, res) => {
+  const registrationData = req.body;
+
+  const sqlquery = "INSERT INTO signup SET ?";
+  db.query(sqlquery, registrationData, (err, result) => {
     if (err) throw err;
     console.log("Registration data inserted:", result);
     res.send("Registration successful!");

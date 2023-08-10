@@ -9,21 +9,19 @@ const Registration = () => {
     id_proof: "",
     id_number: "",
     phone_number: "",
-    whatsapp_number: "",
+    email: "",
     address_1: "",
     address_2: "",
+    address_3: "",
     pincode: "",
-    email: "",
     payment_mode: "",
     emergency_contact: "",
     membership_period: "",
     height: "",
     weight: "",
     date_of_joining: "",
-    graduation_date: "",
-    comments: "",
   });
-
+  const [serverFeedback, setServerFeedback] = useState("");
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
@@ -38,10 +36,9 @@ const Registration = () => {
       },
       body: JSON.stringify(formData),
     })
-      .then((response) => response.json())
+      .then((response) => response.text())
       .then((data) => {
-        console.log("Registration successful:", data);
-        // Reset the form after successful registration
+        setServerFeedback(data);
 
         setFormData({
           first_name: "",
@@ -51,19 +48,17 @@ const Registration = () => {
           id_proof: "",
           id_number: "",
           phone_number: "",
-          whatsapp_number: "",
+          email: "",
           address_1: "",
           address_2: "",
+          address_3: "",
           pincode: "",
-          email: "",
           payment_mode: "",
           emergency_contact: "",
           membership_period: "",
           height: "",
           weight: "",
           date_of_joining: "",
-          graduation_date: "",
-          comments: "",
         });
       })
 
@@ -73,17 +68,17 @@ const Registration = () => {
 
   return (
     <div className="container mt-4">
-      <div className="cover-card">
-        <h2 className="cover-title">Registration Form</h2>
+      <div className="cover-card px-3 mt-3">
+        <h2 className="cover-title py-3">Registration Form</h2>
         <form onSubmit={handleSubmit} className="reg-group">
           <div className="row">
-            <div className="col-md-3 mb-3">
+            <div className="col-md-4 mb-3">
               <label htmlFor="first_name">First Name</label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control px-3 "
                 id="first_name"
-                value={formData.firstName}
+                value={formData.first_Name}
                 onChange={handleChange}
               />
             </div>
@@ -93,7 +88,7 @@ const Registration = () => {
                 type="text"
                 className="form-control"
                 id="last_name"
-                value={formData.lastName}
+                value={formData.last_Name}
                 onChange={handleChange}
               />
             </div>
@@ -117,7 +112,7 @@ const Registration = () => {
                 type="date"
                 className="form-control"
                 id="date_of_birth"
-                value={formData.dateOfBirth}
+                value={formData.date_Of_Birth}
                 onChange={handleChange}
               />
             </div>
@@ -126,7 +121,7 @@ const Registration = () => {
               <select
                 className="form-control"
                 id="id_proof"
-                value={formData.idProof}
+                value={formData.id_Proof}
                 onChange={handleChange}
               >
                 <option value="">Select ID Proof</option>
@@ -135,13 +130,13 @@ const Registration = () => {
                 <option value="otherid">Other ID's</option>
               </select>
             </div>
-            <div className="col-md-3 mb-3">
+            <div className="col-md-2 mb-3">
               <label htmlFor="id_number">ID number</label>
               <input
                 type="tel"
                 className="form-control"
                 id="id_number"
-                value={formData.idNumber}
+                value={formData.id_Number}
                 onChange={handleChange}
               />
             </div>
@@ -151,53 +146,27 @@ const Registration = () => {
                 type="tel"
                 className="form-control"
                 id="phone_number"
-                value={formData.phoneNumber}
+                value={formData.phone_number}
                 onChange={handleChange}
               />
             </div>
             <div className="col-md-3 mb-3">
-              <label htmlFor="whatsapp_number">Whatsapp number</label>
+              <label htmlFor="emergency_contact">Emergency Contact no</label>
               <input
                 type="tel"
                 className="form-control"
-                id="whatsapp_number"
-                value={formData.whatsappNumber}
+                id="emergency_contact"
+                value={formData.emergency_Contact}
                 onChange={handleChange}
               />
             </div>
-          </div>
-
-          <div className="row">
-            <div className="col-md-8 mb-3">
-              <label htmlFor="address_1">Address1(Street)</label>
-              <input
-                type="text"
-                className="form-control"
-                id="address_1"
-                value={formData.address1}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="col-md-3 mb-3">
-              <label htmlFor="address_2">Address2(Area)</label>
-              <input
-                type="text"
-                className="form-control"
-                id="address_2"
-                value={formData.address2}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
-
-          <div className="row">
             <div className="col-md-2 mb-3">
-              <label htmlFor="pincode">Pincode</label>
+              <label htmlFor="date_of_joining">Date of Joining</label>
               <input
-                type="number"
+                type="date"
                 className="form-control"
-                id="pincode"
-                value={formData.pincode}
+                id="date_of_joining"
+                value={formData.date_Of_Joining}
                 onChange={handleChange}
               />
             </div>
@@ -211,12 +180,55 @@ const Registration = () => {
                 onChange={handleChange}
               />
             </div>
+
+            <div className="col-md-4 mb-3">
+              <label htmlFor="address_1">Address1(house/flat)</label>
+              <input
+                type="text"
+                className="form-control"
+                id="address_1"
+                value={formData.address_1}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-md-4 mb-3">
+              <label htmlFor="address_2">Address2(Street)</label>
+              <input
+                type="text"
+                className="form-control"
+                id="address_2"
+                value={formData.address_2}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-md-2 mb-3">
+              <label htmlFor="address_3">Address3(Area)</label>
+              <input
+                type="text"
+                className="form-control"
+                id="address_3"
+                value={formData.address_3}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="col-md-2 mb-3">
+              <label htmlFor="pincode">Pincode</label>
+              <input
+                type="number"
+                className="form-control"
+                id="pincode"
+                value={formData.pincode}
+                onChange={handleChange}
+              />
+            </div>
+
             <div className="col-md-2 mb-3">
               <label htmlFor="payment_mode">Payment Mode</label>
               <select
                 className="form-control"
                 id="payment_mode"
-                value={formData.paymentMode}
+                value={formData.payment_mode}
                 onChange={handleChange}
               >
                 <option value="">Select Payment Mode</option>
@@ -225,25 +237,13 @@ const Registration = () => {
                 <option value="card">Debit/Credit Card</option>
               </select>
             </div>
-            <div className="col-md-3 mb-3">
-              <label htmlFor="emergency_contact">Emergency Contact no</label>
-              <input
-                type="tel"
-                className="form-control"
-                id="emergency_contact"
-                value={formData.emergencyContact}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
 
-          <div className="row">
-            <div className="col-md-3 mb-3">
+            <div className="col-md-2 mb-3">
               <label htmlFor="membership_period">Membership Period</label>
               <select
                 className="form-control"
                 id="membership_period"
-                value={formData.membershipPeriod}
+                value={formData.membership_period}
                 onChange={handleChange}
               >
                 <option value="">Select Membership Period</option>
@@ -253,68 +253,47 @@ const Registration = () => {
                 <option value="yearly">Yearly</option>
               </select>
             </div>
-            <div className="col-md-3 mb-3">
+
+            <div className="col-md-2 mb-3">
               <label htmlFor="height">Height in cm's</label>
-              <input
-                type="number"
+              <select
                 className="form-control"
                 id="height"
                 value={formData.height}
                 onChange={handleChange}
-              />
+              >
+                <option value="">Select Height</option>
+                {Array.from({ length: 46 }, (_, i) => 140 + i).map((value) => (
+                  <option key={value} value={value}>
+                    {value} cm
+                  </option>
+                ))}
+              </select>
             </div>
-            <div className="col-md-3 mb-3">
+            <div className="col-md-2 mb-3">
               <label htmlFor="weight">Weight in kg's</label>
-              <input
-                type="number"
+              <select
                 className="form-control"
                 id="weight"
                 value={formData.weight}
                 onChange={handleChange}
-              />
-            </div>
-            <div className="col-md-3 mb-3">
-              <label htmlFor="date_of_joining">Date of Joining</label>
-              <input
-                type="date"
-                className="form-control"
-                id="date_of_joining"
-                value={formData.dateOfJoining}
-                onChange={handleChange}
-              />
+              >
+                <option value="">Select Weight</option>
+                {Array.from({ length: 71 }, (_, i) => 50 + i).map((value) => (
+                  <option key={value} value={value}>
+                    {value} kg
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
-
-          <div className="row">
-            <div className="col-md-2 mb-3">
-              <label htmlFor="graduation_date">Graduation Date</label>
-              <input
-                type="date"
-                className="form-control"
-                id="graduation_date"
-                value={formData.graduationDate}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="col-md-11 mb-3">
-              <label htmlFor="comments">Comments</label>
-              <textarea
-                className="form-control"
-                id="comments"
-                rows="3"
-                value={formData.comments}
-                onChange={handleChange}
-              ></textarea>
-            </div>
-          </div>
-
-          <div className="d-grid gap-1 col-6 mx-auto">
-            <button className="btn btn-primary" onClick={handleSubmit}>
+          <div className="d-grid gap-1 col-4 mx-auto py-4">
+            <button className="btn btn-primary py-3" onClick={handleSubmit}>
               Create
             </button>
+          </div>
+          <div className="mt-3 text-center">
+            <p>{serverFeedback}</p>
           </div>
         </form>
       </div>

@@ -48,7 +48,7 @@ const Header = () => {
             </li>
          
             <li >
-          <a href="#program" className="btn btn-primary nav-button">
+          <a href="/signup" className="btn btn-primary nav-button">
            Sign Up
           </a>
           </li>
