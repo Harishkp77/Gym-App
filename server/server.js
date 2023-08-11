@@ -40,13 +40,18 @@ app.post("/register", (req, res) => {
 
 
 app.post("/signup", (req, res) => {
-  const registrationData = req.body;
+  const signupData = req.body;
 
   const sqlquery = "INSERT INTO signup SET ?";
-  db.query(sqlquery, registrationData, (err, result) => {
-    if (err) throw err;
-    console.log("Registration data inserted:", result);
-    res.send("Registration successful!");
+  db.query(sqlquery, signupData, (err, result) => {
+    if (err) {
+      if (err.code === "1452") {
+        return res.status(400).json({ error: "Invalid msId. This user does not exist. Contact Admin" });
+      }
+      return res.status(500).json({ error: "An error occurred while processing your request. Contact Admin" });
+    }
+    console.log("signup data inserted:", result);
+    res.send("signup successful!");
   });
 });
 

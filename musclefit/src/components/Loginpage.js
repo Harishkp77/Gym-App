@@ -7,7 +7,7 @@ const Loginpage = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const passwordRef = useRef(null);
   const navigate = useNavigate(); 
-  //const alphanumericRegex = /^[a-zA-Z0-9]+$/;
+ 
 
   const checklogin = (e) => {
     e.preventDefault();
@@ -15,15 +15,9 @@ const Loginpage = () => {
       setErrorMessage("Please fill in both username and password.");
     } else if (username.trim() === "") {
       setErrorMessage("Please fill in the username.");
-    } /*else if (!username.match(alphanumericRegex)) {
-        setErrorMessage("Username should contain only alphanumeric characters.");
-    }*/ else if (password === "") {
+    }  else if (password === "") {
       setErrorMessage("Please fill in the password.");
-    } /*else if (password.includes(" ")) {
-      setErrorMessage("Password should not contain spaces.");
-    } else if (password.length > 15) {
-      setErrorMessage("Password should not exceed 15 characters.");
-    } */
+    }
     
     else if (username === "admin" && password === "1111") {
       navigate("/register");
@@ -48,10 +42,10 @@ const Loginpage = () => {
   };
 
   return (
-    <section className="container" id="login">
-      <div className="cover-card">
-        <h1 className="cover-title">Login</h1>
-        <form onSubmit={checklogin} className="cover-group">
+    <section className="container py-5 justify-content-center align-items-center vh-100" style={{ maxWidth: "400px" }} id="login">
+       <div className="cover-card px-3 mt-3">
+       <h2 className="mb-4 text-center py-3">Login</h2>
+        <form onSubmit={checklogin} >
           <label className="cover-label">Username</label>
           <input
             type="text"
@@ -75,8 +69,7 @@ const Loginpage = () => {
           />
 
           {errorMessage && <p className="alert alert-danger">{errorMessage}</p>}
-
-          <button type="submit" className="btn btn-primary cover-button">
+          <button type="submit" className=" mt-3 btn btn-primary cover-button">
             Login
           </button>
         </form>

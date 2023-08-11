@@ -22,6 +22,7 @@ const Signup = () => {
       return;
     }
 
+
     fetch("http://localhost:5000/signup", {
       method: "POST",
       headers: {
@@ -33,9 +34,17 @@ const Signup = () => {
         password: formData.password,
       }),
     })
-      .then((response) => response.text())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
       .then((data) => {
-        setServerFeedback(data);
+        if (data.error) {
+          setServerFeedback(data.error); // Display the error message
+        } else {
+          setServerFeedback(data);
 
         setFormData({
           msId: "",
@@ -43,15 +52,19 @@ const Signup = () => {
           password: "",
           cnfpassword:"",
         });
+      }
       })
 
-      .catch((error) => console.error("Error submitting form:", error));
-  };
+      .catch((error) => {
+       console.error("Error submitting form:", error);
+      setServerFeedback("An error occurred while processing your request.");
+  });
+};
 
   return (
-    <div className="container d-flex justify-content-center align-items-center vh-100">
-      <div className="border p-4 rounded" style={{ maxWidth: "400px" }}>
-        <h2 className="mb-4 text-center">Sign Up</h2>
+    <div className="container py-5 justify-content-center align-items-center vh-100" style={{ maxWidth: "400px" }}>
+            <div className="cover-card px-3 mt-3">
+        <h2 className="mb-4 text-center py-3">Sign Up</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="msId" className="form-label">
