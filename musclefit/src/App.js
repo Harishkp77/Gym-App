@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import AdminLogin from "./components/AdminLogin";
-import UserLogin from "./components/UserLogin";
-import RegisterComponent from "./components/RegisterComponent";
+import AdminLogin from "./components/routes/AdminLogin";
+import UserLogin from "./components/routes/UserLogin";
+import RegisterComponent from "./components/routes/RegisterComponent";
 import UserReport from "../src/report/UserReport";
-import Signup from "./components/Signup";
-import Homepage from "./components/Homepage";
+import Signup from "./components/routes/Signup";
+import Homepage from "./components/routes/Homepage";
 
 function App() {
   return (

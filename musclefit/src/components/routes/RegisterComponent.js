@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Layout from './Layout';
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -42,23 +43,23 @@ const Registration = () => {
 
         setFormData({
           first_name: "",
-          last_name: "",
-          gender: "",
-          date_of_birth: "",
-          id_proof: "",
-          id_number: "",
-          phone_number: "",
-          email: "",
-          address_1: "",
-          address_2: "",
-          address_3: "",
-          pincode: "",
-          payment_mode: "",
-          emergency_contact: "",
-          membership_period: "",
-          height: "",
-          weight: "",
-          date_of_joining: "",
+    last_name: "",
+    gender: "",
+    date_of_birth: "",
+    id_proof: "",
+    id_number: "",
+    phone_number: "",
+    email: "",
+    address_1: "",
+    address_2: "",
+    address_3: "",
+    pincode: "",
+    payment_mode: "",
+    emergency_contact: "",
+    membership_period: "",
+    height: "",
+    weight: "",
+    date_of_joining: "",
         });
       })
 
@@ -67,8 +68,10 @@ const Registration = () => {
   // Reset the form after successful registration
 
   return (
-    <div className="container mt-4">
-      <div className="cover-card px-3 mt-3">
+    <> 
+    <Layout/>
+    <div className="container mt-2">
+      <div className="cover-card px-3 mt-1">
         <h2 className="cover-title py-3">Registration Form</h2>
         <form onSubmit={handleSubmit} className="reg-group">
           <div className="row">
@@ -287,17 +290,18 @@ const Registration = () => {
               </select>
             </div>
           </div>
-          <div className="d-grid gap-1 col-4 mx-auto py-4">
+          <div className="d-grid gap-1 col-4 mx-auto py-2">
             <button className="btn btn-primary py-3" onClick={handleSubmit}>
               Create
             </button>
           </div>
-          <div className="mt-3 text-center">
+          <div className="mt-2 text-center">
             <p>{serverFeedback}</p>
           </div>
         </form>
       </div>
     </div>
+    </>
   );
 };
 

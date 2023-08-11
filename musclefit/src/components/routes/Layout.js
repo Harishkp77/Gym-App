@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from '../components/assets/images/Logo.jpg';
+import Logo from '../assets/images/Logo.jpg';
 
 const Layout = () => {
   return (

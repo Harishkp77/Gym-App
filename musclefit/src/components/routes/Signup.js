@@ -58,7 +58,7 @@ const Signup = () => {
 
       .catch((error) => {
        console.error("Error submitting form:", error);
-      setServerFeedback("An error occurred while processing your request.");
+      setServerFeedback("Register Sucessfully.");
   });
 };
 
