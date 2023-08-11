@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const  UserReport = () => {
+const  Muscle = () => {
     const [formData, setFormData] = useState({
         exerciseName: "",
         date:"",
@@ -55,11 +55,12 @@ const  UserReport = () => {
   
     
       return (
-        <div className="exercise-report">
-          <h2>Gym Exercise Report</h2>
-          <form onSubmit={generateReport} className="reg-group">
+        <div className="container mt-6" style={{ maxWidth: "1200px" }} >
+        <div className="cover-card px-3 mt-2">
+          <h2 className="cover-title py-3">Muscle Exercise Report</h2>
+          <form onSubmit={generateReport}  className="reg-group" >
             <div className="row">
-              <div className="col-md-4 mb-3">
+              <div className="col-md-3 mb-3">
                 <label htmlFor="exerciseName">Exercise Name</label>
                 <select
                   className="form-control px-3"
@@ -76,7 +77,7 @@ const  UserReport = () => {
                   {/* Add more exercise options as needed */}
                 </select>
               </div>
-              <div className="col-md-4 mb-3">
+              <div className="col-md-3 mb-3">
           <label htmlFor="date">Date of Exercise</label>
           <input
             type="date"
@@ -86,7 +87,7 @@ const  UserReport = () => {
             onChange={handleChange}
           />
         </div>
-              <div className="col-md-4 mb-3">
+              <div className="col-md-2 mb-3">
                 <label htmlFor="sets">Sets</label>
                 <input
                   type="text"
@@ -97,7 +98,7 @@ const  UserReport = () => {
                 />
               </div>
               
-              <div className="col-md-4 mb-3">
+              <div className="col-md-2 mb-3">
                 <label htmlFor="reps">Reps</label>
                 <input
                   type="text"
@@ -107,7 +108,7 @@ const  UserReport = () => {
                   onChange={handleChange}
                 />
               </div>
-              <div className="col-md-4 mb-3">
+              <div className="col-md-2 mb-3">
                 <label htmlFor="weight">Weight</label>
                 <input
                   type="text"
@@ -118,9 +119,9 @@ const  UserReport = () => {
                 />
               </div>
             </div>
-            <div className="d-grid gap-1 col-4 mx-auto py-4">
-              <button className="btn btn-primary py-3" type="submit" onClick={generateReport}>
-                Generate Report
+            <div className=" d-grid col-4 mx-auto py-2">
+              <button className="btn btn-primary py-2" type="submit" onClick={generateReport}>
+             Update
               </button>
             </div>
             {/* {report && (
@@ -134,8 +135,9 @@ const  UserReport = () => {
             <p>{serverFeedback}</p>
           </div>
           </form>
+          </div>
         </div>
       );
     };
 
-export default UserReport;
+export default Muscle;

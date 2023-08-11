@@ -1,5 +1,8 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import Layout from "./Layout";
+
+
 
 const AdminLogin = () => {
   const [username, setusername] = useState("");
@@ -42,9 +45,12 @@ const AdminLogin = () => {
   };
 
   return (
+    <> 
+   <Layout/>
     <section className="container py-5 justify-content-center align-items-center vh-100" style={{ maxWidth: "400px" }} id="login">
+
        <div className="cover-card px-3 mt-3">
-       <h2 className="mb-4 text-center py-3">Login</h2>
+       <h2 className="mb-4 text-center py-3">Admin Login</h2>
         <form onSubmit={checklogin} >
           <label className="cover-label">Username</label>
           <input
@@ -74,7 +80,7 @@ const AdminLogin = () => {
           </button>
         </form>
       </div>
-    </section>
+    </section></>
   );
 };
 

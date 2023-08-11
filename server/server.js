@@ -67,10 +67,10 @@ app.post("/save_muscle_building", (req, res) => {
   });
 });
 
-app.post("/save_cardio_strength", (req, res) => {
+app.post("/save_cardio", (req, res) => {
   const cardiostrengthData = req.body;
 
-  const sqlquery = "INSERT INTO registrations SET ?";
+  const sqlquery = "INSERT INTO cardio_exercise SET ?";
   db.query(sqlquery, cardiostrengthData, (err, result) => {
     if (err) throw err;
     console.log("Registration data inserted:", result);
@@ -78,40 +78,16 @@ app.post("/save_cardio_strength", (req, res) => {
   });
 });
 
-app.post("/save_stretch_yoga", (req, res) => {
+app.post("/save_yoga_stretching", (req, res) => {
   const stretchyogaData  = req.body;
 
-  const sqlquery = "INSERT INTO registrations SET ?";
+  const sqlquery = "INSERT INTO exercise_reports SET ?";
   db.query(sqlquery, stretchyogaData , (err, result) => {
     if (err) throw err;
     console.log("Registration data inserted:", result);
     res.send("Registration successful!");
   });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 const PORT = process.env.PORT || 5000;

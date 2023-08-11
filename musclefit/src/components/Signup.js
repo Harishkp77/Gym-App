@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Layout from "./Layout";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -62,11 +63,13 @@ const Signup = () => {
 };
 
   return (
-    <div className="container py-5 justify-content-center align-items-center vh-100" style={{ maxWidth: "400px" }}>
-            <div className="cover-card px-3 mt-3">
-        <h2 className="mb-4 text-center py-3">Sign Up</h2>
+    <>
+    <Layout/>
+    <div className="container py-5 justify-content-center align-items-center" style={{ maxWidth: "400px" }}>
+            <div className="cover-card px-3 mt-1">
+        <h2 className="mb-2 text-center py-3">Sign Up</h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-3">
+          <div className="mb-2">
             <label htmlFor="msId" className="form-label">
               Memebr ID
             </label>
@@ -134,6 +137,7 @@ const Signup = () => {
         </form>
       </div>
     </div>
+    </>
   );
 };
 

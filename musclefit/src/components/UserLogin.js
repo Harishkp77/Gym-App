@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import Layout from "./Layout";
 
 const UserLogin = () => {
   const [username, setusername] = useState("");
@@ -42,9 +43,11 @@ const UserLogin = () => {
   };
 
   return (
+    <> 
+    <Layout/>
     <section className="container py-5 justify-content-center align-items-center vh-100" style={{ maxWidth: "400px" }} id="login">
        <div className="cover-card px-3 mt-3">
-       <h2 className="mb-4 text-center py-3">Login</h2>
+       <h2 className="mb-4 text-center py-3">User Login</h2>
         <form onSubmit={checklogin} >
           <label className="cover-label">Username</label>
           <input
@@ -75,7 +78,8 @@ const UserLogin = () => {
         </form>
       </div>
     </section>
-  );
+
+    </>  );
 };
 
 export default UserLogin;

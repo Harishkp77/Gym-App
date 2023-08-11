@@ -9,7 +9,7 @@ const Header = () => {
     <header className="Header" id="home">
       <nav className="navbar navbar-expand-lg navbar-light bg-light container">
         <a href="#home" className="navbar-brand">
-          MUSCLE<span>TRAINER</span>
+          MUSCLE<span> TRAINER</span>
           <img className="mtlogo" src={Logo} alt="" />
         </a>
         <button
