@@ -9,6 +9,7 @@ const  UserReport = () => {
         weight: "",
       });
     //   const [report, setReport] = useState("");
+     const [serverFeedback, setServerFeedback] = useState("");
     
       const handleChange = (e) => {
         const { id, value } = e.target;
@@ -28,7 +29,7 @@ const  UserReport = () => {
             reps: formData.reps,
             weight: formData.weight,
           };
-          fetch("/save_muscle_building", {
+          fetch("http://localhost:5000/save_muscle_building", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -37,7 +38,7 @@ const  UserReport = () => {
           })
             .then((response) => response.text())
             .then((data) => {
-              console.log(data);
+             setServerFeedback(data);
               // Clear the form after successful submission
               setFormData({
                 exerciseName: "",
@@ -128,6 +129,10 @@ const  UserReport = () => {
                 <pre>{report}</pre>
               </div>
             )} */}
+
+               <div className="mt-3 text-center">
+            <p>{serverFeedback}</p>
+          </div>
           </form>
         </div>
       );

@@ -59,7 +59,7 @@ app.post("/signup", (req, res) => {
 app.post("/save_muscle_building", (req, res) => {
   const muscleBuildingData = req.body;
 
-  const sqlquery = "INSERT INTO registrations SET ?";
+  const sqlquery = "INSERT INTO muscle_building SET ?";
   db.query(sqlquery, muscleBuildingData, (err, result) => {
     if (err) throw err;
     console.log("Registration data inserted:", result);
