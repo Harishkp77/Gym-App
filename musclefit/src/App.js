@@ -8,8 +8,10 @@ import Membership from "./components/Membership";
 import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
 import ScrollUp from "./components/ScrollUp";
-import Loginpage from "./components/Loginpage";
+import AdminLogin from "./components/AdminLogin";
+import UserLogin from "./components/UserLogin";
 import RegisterComponent from "./components/RegisterComponent";
+import UserReport from "./components/UserReport";
 import Signup from "./components/Signup";
 function App() {
   return (
@@ -29,9 +31,11 @@ function App() {
             </>
           }
         />
-        <Route path="/login" element={<Loginpage />} />
+        <Route path="/admin" element={<AdminLogin />} />
         <Route path="/register" element={<RegisterComponent />} />
         <Route path="/signup" element={<Signup/>} />
+        <Route path="/login" element={<UserLogin/>} />
+        <Route path="/report" element={<UserReport/>} />
       </Routes>
       <ScrollUp />
     </Router>

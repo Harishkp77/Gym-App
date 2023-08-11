@@ -42,8 +42,13 @@ const Header = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a href="/login" className="btn btn-primary nav-button" onClick={() => setShow(!show)}>
+              <a href="/admin" className="btn btn-primary nav-button" onClick={() => setShow(!show)}>
                 Admin
+              </a>
+            </li>
+            <li className="nav-item">
+              <a href="/login" className="btn btn-primary nav-button" onClick={() => setShow(!show)}>
+                Login
               </a>
             </li>
          

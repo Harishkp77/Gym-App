@@ -45,7 +45,7 @@ const Membership = () => {
               10% off on supplements
             </li>
           </ul>
-          <a href="#get-started" className="membership-btn">GET STARTED</a>
+         
         </div>
 
         <div className="col-md-4 membership-card">
@@ -74,7 +74,7 @@ const Membership = () => {
               Personalised Weight training plan
             </li>
           </ul>
-          <a href="#get-started" className="membership-btn">GET STARTED</a>
+          
         </div>
 
         <div className="col-md-4 membership-card active">
@@ -99,7 +99,7 @@ const Membership = () => {
               Free diet plan consultation
             </li>
           </ul>
-          <a href="#get-started" className="membership-btn">GET STARTED</a>
+         
         </div>
       </div>
     </section>
