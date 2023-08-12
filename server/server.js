@@ -89,6 +89,21 @@ app.post("/save_yoga_stretching", (req, res) => {
   });
 });
 
+app.get('/getregistrations', (req, res) => {
+  const query = 'SELECT * FROM registrations';
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Error fetching registrations:', err);
+      res.status(500).json({ error: 'Error fetching registrations' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
