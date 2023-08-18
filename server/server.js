@@ -144,18 +144,19 @@ app.get('/getregistrations', (req, res) => {
 });
 
 
+const currentDate = new Date().toISOString().split('T')[0];
 
 app.get("/daily-muscle-report/:msId", (req, res) => {
   const msId = req.params.msId;
 
-  // Fetch muscle exercise data from the database for the specified msId
+  // Fetch muscle exercise data from the database for the specified msId and today's date
   const query = `
     SELECT * 
     FROM muscle_building 
-    WHERE msId = ?;
+    WHERE msId = ? AND DATE(date_of_exercise) = ?;
   `;
 
-  db.query(query, [msId], (err, results) => {
+  db.query(query, [msId, currentDate], (err, results) => {
     if (err) {
       console.error(err);
       res.status(500).json({ error: "An error occurred" });
@@ -164,8 +165,6 @@ app.get("/daily-muscle-report/:msId", (req, res) => {
     }
   });
 });
-
-
 
 // Route to fetch weekly muscle exercise report
 app.get('/weekly-muscle-report/:msId', (req, res) => {
@@ -208,7 +207,60 @@ app.get('/monthly-muscle-report/:msId', (req, res) => {
 });
 
 
+app.get('/getMuscleBuildingData', (req, res) => {
+  const query = `
+    SELECT * 
+    FROM muscle_building;
+  `;
 
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'An error occurred' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+
+
+// Endpoint to fetch cardio exercise data
+app.get('/getCardioExerciseData', (req, res) => {
+  // Fetch cardio exercise data from the database
+  const query = `
+    SELECT * 
+    FROM cardio_exercise;
+  `;
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'An error occurred' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+
+app.get("/getYogaExerciseData", (req, res) => {
+  // Fetch yoga exercise data from the database
+  const query = `
+    SELECT *
+    FROM exercise_reports
+    WHERE exercise_name IN ('Yoga', 'Stretching');
+  `;
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: "An error occurred" });
+    } else {
+      res.json(results);
+    }
+  });
+});
 
 
 const PORT = process.env.PORT || 5000;

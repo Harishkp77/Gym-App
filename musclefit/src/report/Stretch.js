@@ -81,7 +81,7 @@ const Yoga = () => {
                 <option value="">Select an exercise</option>
                 <option value="Yoga">Yoga</option>
                 <option value="Stretching">Stretching</option>
-                {/* Add more yoga and stretching exercise options as needed */}
+       
               </select>
             </div>
             <div className="col-md-3 mb-3">

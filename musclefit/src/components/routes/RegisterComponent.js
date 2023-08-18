@@ -42,6 +42,40 @@ const RegisterComponent = () => {
               </div>
             </div>
           </div>
+          <div className="col-lg-4 col-md-6 mb-4">
+            <div className="card bg-warning text-white h-100">
+              <div className="card-body text-center">
+                <h2>User Data</h2>
+                <p>Explore muscle user data</p>
+                <Link to="/view-muscle" className="btn btn-light mt-3">
+                  View muscle Data
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-4 col-md-6 mb-4">
+            <div className="card bg-warning text-white h-100">
+              <div className="card-body text-center">
+                <h2>User Data</h2>
+                <p>Explore cardio user data</p>
+                <Link to="/view-cardio" className="btn btn-light mt-3">
+                  View Cardio Data
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-lg-4 col-md-6 mb-4">
+            <div className="card bg-warning text-white h-100">
+              <div className="card-body text-center">
+                <h2>User Data</h2>
+                <p>Explore yoga & stretch user data</p>
+                <Link to="/view-yoga" className="btn btn-light mt-3">
+                  View Yoga & Stretch Data
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

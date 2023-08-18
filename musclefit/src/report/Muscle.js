@@ -9,7 +9,7 @@ const Muscle = () => {
     date: "",
     sets: "",
     reps: "",
-    weight: "",
+   
   });
   const [serverFeedback, setServerFeedback] = useState("");
   const { msId } = useParams();
@@ -28,7 +28,7 @@ const Muscle = () => {
       date_of_exercise: formData.date,
       sets: formData.sets,
       reps: formData.reps,
-      weight: formData.weight,
+     
     };
     fetch("http://localhost:5000/save_muscle_building", {
       method: "POST",
@@ -45,7 +45,7 @@ const Muscle = () => {
           date: "",
           sets: "",
           reps: "",
-          weight: "",
+       
         });
       })
       .catch((error) => console.error("Error submitting form:", error));
@@ -88,7 +88,7 @@ const Muscle = () => {
                   <option value="Deadlift">Deadlift</option>
                   <option value="Pull-up">Pull-up</option>
                   <option value="Push-up">Push-up</option>
-                  {/* Add more exercise options as needed */}
+               
                 </select>
               </div>
               <div className="col-md-3 mb-3">
@@ -122,7 +122,7 @@ const Muscle = () => {
                   onChange={handleChange}
                 />
               </div>
-              <div className="col-md-2 mb-3">
+              {/* <div className="col-md-2 mb-3">
                 <label htmlFor="weight">Weight</label>
                 <input
                   type="text"
@@ -131,7 +131,7 @@ const Muscle = () => {
                   value={formData.weight}
                   onChange={handleChange}
                 />
-              </div>
+              </div> */}
             </div>
             <div className=" d-grid col-4 mx-auto py-2">
               <button className="btn btn-primary py-2" type="submit" onClick={generateReport}>

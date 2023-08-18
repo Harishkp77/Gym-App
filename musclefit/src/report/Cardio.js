@@ -86,7 +86,7 @@ const Cardio = () => {
                 <option value="Cycling">Cycling</option>
                 <option value="Swimming">Swimming</option>
                 <option value="Jump Rope">Jump Rope</option>
-                {/* Add more cardio exercise options as needed */}
+          
               </select>
             </div>
             <div className="col-md-3 mb-3">

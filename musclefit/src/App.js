@@ -15,6 +15,9 @@ import Yoga from "../src/report/Stretch";
 import DailyMuscleReport from "./report/DailyMuscleReport";
 import WeeklyMuscleReport from "./report/WeeklyMuscleReport";
 import MonthlyMuscleReport from "./report/MonthlyMuscleReport";
+import ViewMuscle from "./components/routes/crud/ViewMuscle";
+import ViewCardio from "./components/routes/crud/ViewCardio";
+import ViewYoga from "./components/routes/crud/ViewYoga";
 
 
 
@@ -25,13 +28,17 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/admin" element={<AdminLogin />} />          <Route path="/signup" element={<Signup />} />
+          <Route path="/admin" element={<AdminLogin />} />        
+          <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<UserLogin />} />
           <Route path="/report" element={<UserReport />} />
           <Route path="/register/*" element={<RegisterComponent />} />
           <Route path="/user-registration" element={<AddRegister />} />
           <Route path="/view-registration" element={<ViewRegister />} />
           <Route path="/view-signup" element={<ViewSignUp />} />
+          <Route path="/view-muscle" element={<ViewMuscle />} />
+          <Route path="/view-cardio" element={<ViewCardio />} />
+          <Route path="/view-yoga" element={<ViewYoga />} />
           <Route path="/update-muscle/:msId" element={<Muscle />} />
           <Route path="/update-cardio/:msId" element={<Cardio />} />
           <Route path="/update-yoga/:msId" element={<Yoga />} />
