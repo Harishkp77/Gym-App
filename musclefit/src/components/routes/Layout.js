@@ -2,15 +2,30 @@ import React from 'react';
 import Logo from '../assets/images/Logo.jpg';
 
 const Layout = () => {
+  const goBack = () => {
+    window.history.back();
+  };
+
   return (
     <div className="Header" id="home">
-      <nav className="navbar navbar-expand-lg navbar-light bg-light container m">
-      <a href="/" className="navbar-brand">
-          MUSCLE<span>  TRAINER</span>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light container">
+        <a href="/" className="navbar-brand">
+          MUSCLE<span> TRAINER</span>
           <img className="mtlogo" src={Logo} alt="" />
         </a>
-      <ul className="navbar-nav ml-auto">
-             
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <a href="/" className="btn btn-primary nav-button">
                 Home
@@ -31,8 +46,13 @@ const Layout = () => {
                 Sign Up
               </a>
             </li>
+            <li>
+              <button onClick={goBack} className="btn btn-primary nav-button">
+                Back
+              </button>
+            </li>
           </ul>
-       
+        </div>
       </nav>
     </div>
   );

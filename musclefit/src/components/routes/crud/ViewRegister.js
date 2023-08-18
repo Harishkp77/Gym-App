@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Layout from '../Layout';
 
 const ViewRegister = () => {
   const [registrations, setRegistrations] = useState([]);
@@ -6,11 +7,15 @@ const ViewRegister = () => {
     // Fetch data from your API endpoint
     fetch("http://localhost:5000/getRegistrations")  // Replace with your API endpoint
       .then((response) => response.json())
-      .then((data) => setRegistrations(data))
+      .then((data) => {
+        const sortedData = data.sort((a, b) => new Date(b.created_time) - new Date(a.created_time));
+        setRegistrations(sortedData)})
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
   return (
+    <>
+    <Layout/>
     <div className="container mt-2">
         <div className="cover-card px-3 mt-1">
       <h3  className="cover-title py-3" >View Registrations</h3>
@@ -42,7 +47,7 @@ const ViewRegister = () => {
         <tbody>
           {registrations.map(registration => (
             <tr key={registration.id}>
-              <td>{registration.id}</td>
+              <td>{registration.ms_id}</td>
               <td>{registration.first_name}</td>
               <td>{registration.last_name}</td>
               <td>{registration.gender}</td>
@@ -68,6 +73,7 @@ const ViewRegister = () => {
     </div>
     </div>
     </div>
+    </>
   );
 };
 

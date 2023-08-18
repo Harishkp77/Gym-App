@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import Layout from "../Layout";
+
 
 
 const AddRegister = () => {
   const [formData, setFormData] = useState({
+    ms_id: "",
     first_name: "",
     last_name: "",
     gender: "",
@@ -28,48 +31,49 @@ const AddRegister = () => {
     setFormData({ ...formData, [id]: value });
   };
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:5000/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.text())
-      .then((data) => {
-        setServerFeedback(data);
+     const generatedId = Math.floor(10000 + Math.random() * 90000);
+     fetch("http://localhost:5000/register", {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
+       },
+       body: JSON.stringify({ ...formData, ms_id: generatedId }),
+     })
+       .then((response) => response.text())
+       .then((data) => {
+         setServerFeedback(data);
 
-        setFormData({
-          first_name: "",
-    last_name: "",
-    gender: "",
-    date_of_birth: "",
-    id_proof: "",
-    id_number: "",
-    phone_number: "",
-    email: "",
-    address_1: "",
-    address_2: "",
-    address_3: "",
-    pincode: "",
-    payment_mode: "",
-    emergency_contact: "",
-    membership_period: "",
-    height: "",
-    weight: "",
-    date_of_joining: "",
-        });
-      })
-
-      .catch((error) => console.error("Error submitting form:", error));
-  };
-  // Reset the form after successful registration
+         setFormData({
+           first_name: "",
+           last_name: "",
+           gender: "",
+           date_of_birth: "",
+           id_proof: "",
+           id_number: "",
+           phone_number: "",
+           email: "",
+           address_1: "",
+           address_2: "",
+           address_3: "",
+           pincode: "",
+           payment_mode: "",
+           emergency_contact: "",
+           membership_period: "",
+           height: "",
+           weight: "",
+           date_of_joining: "",
+         });
+              })
+       .catch((error) => console.error("Error submitting form:", error));
+    
+ };
 
   return (
     <> 
-  
+  <Layout/>
     <div className="container mt-2">
       <div className="cover-card px-3 mt-1">
         <h2 className="cover-title py-3">Registration Form</h2>

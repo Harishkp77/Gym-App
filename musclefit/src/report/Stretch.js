@@ -1,13 +1,17 @@
 import React, { useState } from "react";
+import { useParams } from 'react-router-dom';
+import Layout from "../components/routes/Layout";
 
 const Yoga = () => {
   const [formData, setFormData] = useState({
+    msId:"",
     exerciseName: "",
     date: "",
     duration: "",
     caloriesBurned: "",
   });
   const [serverFeedback, setServerFeedback] = useState("");
+  const { msId } = useParams();
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -18,6 +22,7 @@ const Yoga = () => {
     e.preventDefault();
 
     const exerciseData = {
+      msId:msId,
       exercise_name: formData.exerciseName,
       date_of_exercise: formData.date,
       duration_minutes: formData.duration,
@@ -45,11 +50,26 @@ const Yoga = () => {
   };
 
   return (
+    <>
+    <Layout/>
+    <div className="container mt-5">
+    <h1 className="text-center mb-4">Update Yoga & stretch Data </h1>
+   
     <div className="container mt-6" style={{ maxWidth: "1200px" }}>
       <div className="cover-card px-3 mt-2">
         <h2 className="cover-title py-3">Yoga and Stretching Exercise Report</h2>
         <form onSubmit={generateReport}  className="reg-group">
           <div className="row">
+          <div className="col-md-3 mb-3">
+                  <label htmlFor="msId">User ID (msId)</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="msId"
+                    value={msId}
+                    readOnly
+                  />
+                </div>
             <div className="col-md-3 mb-3">
               <label htmlFor="exerciseName">Exercise Name</label>
               <select
@@ -110,6 +130,8 @@ Update
         </form>
       </div>
     </div>
+    </div>
+    </>
   );
 };
 

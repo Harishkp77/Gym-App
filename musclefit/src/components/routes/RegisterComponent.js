@@ -1,77 +1,49 @@
-import React, { useRef } from 'react';
-import { Link, ScrollRestoration } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom'; 
 import Layout from './Layout';
-import AddRegister from './crud/AddRegister';
-import ViewRegister from './crud/ViewRegister';
-import UpdateRegister from './crud/UpdateRegister';
-import DeleteRegister from './crud/DeleteRegister';
-import ScrollUp from '../home/ScrollUp';
 
 const RegisterComponent = () => {
-  const addRef = useRef(null);
-  const viewRef = useRef(null);
-  const updateRef = useRef(null);
-  const deleteRef = useRef(null);
-
-  const handleLinkClick = (ref) => {
-    ref.current.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <>
       <Layout />
-      <div className="container mt-4">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light mb-4">
-          <Link className="navbar-brand" to="#">
-            <h2>Admin Dashboard</h2>
-          </Link>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <button className="nav-link nav-button btn btn-link" onClick={() => handleLinkClick(addRef)}>
-                  Add
-                </button>
-              </li>
-              <li className="nav-item">
-                <button className="nav-link nav-button btn btn-link" onClick={() => handleLinkClick(viewRef)}>
-                  View
-                </button>
-              </li>
-              <li className="nav-item">
-                <button className="nav-link nav-button btn btn-link" onClick={() => handleLinkClick(updateRef)}>
-                  Update
-                </button>
-              </li>
-              <li className="nav-item">
-                <button className="nav-link nav-button btn btn-link" onClick={() => handleLinkClick(deleteRef)}>
-                  Delete
-                </button>
-              </li>
-            </ul>
+      <div className="container mt-5">
+        <h1 className="text-center mb-4">Admin Dashboard</h1>
+        <div className="row justify-content-center">
+          <div className="col-lg-4 col-md-6 mb-4">
+            <div className="card bg-primary text-white h-100">
+              <div className="card-body text-center">
+                <h2>User Registration</h2>
+                <p>Add and manage user registrations</p>
+                <Link to="/user-registration" className="btn btn-light mt-3">
+                  Add Registration
+                </Link>
+              </div>
+            </div>
           </div>
-        </nav>
-        <div className="row">
-          <div className="col-md-12">
-            <div id="add" ref={addRef}>
-              <h3>Add Component</h3>
-              <AddRegister />
+          <div className="col-lg-4 col-md-6 mb-4">
+            <div className="card bg-success text-white h-100">
+              <div className="card-body text-center">
+                <h2>View User Registration</h2>
+                <p>View and analyze user registrations</p>
+                <Link to="/view-registration" className="btn btn-light mt-3">
+                  View Registrations
+                </Link>
+              </div>
             </div>
-            <div id="view" ref={viewRef}>
-              <h3>View Component</h3>
-              <ViewRegister />
-            </div>
-            <div id="update" ref={updateRef}>
-              <h3>Update Component</h3>
-              <UpdateRegister />
-            </div>
-            <div id="delete" ref={deleteRef}>
-              <h3>Delete Component</h3>
-              <DeleteRegister />
+          </div>
+          <div className="col-lg-4 col-md-6 mb-4">
+            <div className="card bg-warning text-white h-100">
+              <div className="card-body text-center">
+                <h2>User Data</h2>
+                <p>Explore signup user data</p>
+                <Link to="/view-signup" className="btn btn-light mt-3">
+                  View Signup Data
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <ScrollUp />
     </>
   );
 };

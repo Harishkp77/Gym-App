@@ -7,27 +7,43 @@ const UserLogin = () => {
   const [password, setpassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const passwordRef = useRef(null);
-  const navigate = useNavigate(); 
- 
+  const navigate = useNavigate();
 
-  const checklogin = (e) => {
+  const checklogin = async (e) => {
     e.preventDefault();
-    if (username.trim() === "" && password === "") {
+
+    if (username.trim() === "" || password === "") {
       setErrorMessage("Please fill in both username and password.");
-    } else if (username.trim() === "") {
-      setErrorMessage("Please fill in the username.");
-    }  else if (password === "") {
-      setErrorMessage("Please fill in the password.");
+      return;
     }
-    
-    else if (username === "admin" && password === "1111") {
-   navigate('/report');
-    } else if (username === "admin") {
-      setErrorMessage("Invalid password.");
-    } else if (password === "1111") {
-      setErrorMessage("Invalid username.");
-    } else {
-      setErrorMessage("Invalid username or password.");
+
+    try {
+      const response = await fetch("http://localhost:5000/checkLogin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.valid) {
+          navigate(`/report`, {
+            state: {
+              msId: data.msId,
+              firstName: data.firstName,
+              lastName: data.lastName,
+            },
+          });
+        } else {
+          setErrorMessage("Invalid username or password.");
+        }
+      } else {
+        setErrorMessage("An error occurred while trying to log in.");
+      }
+    } catch (error) {
+      setErrorMessage("An error occurred while trying to log in.");
     }
   };
 
@@ -35,51 +51,60 @@ const UserLogin = () => {
     if (e.key === "Enter") {
       e.preventDefault();
       if (e.target.name === "username") {
-        passwordRef.current.focus(); // Move focus to the password input field
+        passwordRef.current.focus();
       } else {
-        checklogin(e); // Trigger the login function when "Enter" is pressed in the password input field
+        checklogin(e);
       }
     }
   };
 
   return (
-    <> 
-    <Layout/>
-    <section className="container py-5 justify-content-center align-items-center vh-100" style={{ maxWidth: "400px" }} id="login">
-       <div className="cover-card px-3 mt-3">
-       <h2 className="mb-4 text-center py-3">User Login</h2>
-        <form onSubmit={checklogin} >
-          <label className="cover-label">Username</label>
-          <input
-            type="text"
-            name="username"
-            placeholder="Enter username"
-            className="form-control"
-            value={username}
-            onChange={(e) => setusername(e.target.value)}
-            onKeyDown={handleKeyDown}
-          />
-          <label className="cover-label">Password</label>
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter password"
-            className="form-control"
-            value={password}
-            onChange={(e) => setpassword(e.target.value)}
-            onKeyDown={handleKeyDown}
-            ref={passwordRef}
-          />
+    <>
+      <Layout />
+      <section
+        className="container py-5 justify-content-center align-items-center vh-100"
+        style={{ maxWidth: "400px" }}
+        id="login"
+      >
+        <div className="cover-card px-3 mt-3">
+          <h2 className="mb-4 text-center py-3">User Login</h2>
+          <form onSubmit={checklogin}>
+            <label className="cover-label">Username</label>
+            <input
+              type="text"
+              name="username"
+              placeholder="Enter username"
+              className="form-control"
+              value={username}
+              onChange={(e) => setusername(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+            <label className="cover-label">Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter password"
+              className="form-control"
+              value={password}
+              onChange={(e) => setpassword(e.target.value)}
+              onKeyDown={handleKeyDown}
+              ref={passwordRef}
+            />
 
-          {errorMessage && <p className="alert alert-danger">{errorMessage}</p>}
-          <button type="submit" className=" mt-3 btn btn-primary cover-button">
-            Login
-          </button>
-        </form>
-      </div>
-    </section>
-
-    </>  );
+            {errorMessage && (
+              <p className="alert alert-danger">{errorMessage}</p>
+            )}
+            <button
+              type="submit"
+              className=" mt-3 btn btn-primary cover-button"
+            >
+              Login
+            </button>
+          </form>
+        </div>
+      </section>
+    </>
+  );
 };
 
 export default UserLogin;

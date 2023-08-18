@@ -1,65 +1,79 @@
 import React, { useState } from "react";
+import { useParams } from 'react-router-dom';
+import Layout from "../components/routes/Layout";
 
-const  Muscle = () => {
-    const [formData, setFormData] = useState({
-        exerciseName: "",
-        date:"",
-        sets: "",
-        reps: "",
-        weight: "",
-      });
-    //   const [report, setReport] = useState("");
-     const [serverFeedback, setServerFeedback] = useState("");
-    
-      const handleChange = (e) => {
-        const { id, value } = e.target;
-        setFormData({ ...formData, [id]: value });
-      };
-    
-      const generateReport = (e) => {
-        e.preventDefault();
-    
-        // const newReport = `Exercise: ${formData.exerciseName}\nSets: ${formData.sets}\nReps: ${formData.reps}\nWeight: ${formData.weight}`;
-        // setReport(newReport);
+const Muscle = () => {
+  const [formData, setFormData] = useState({
+    msId:"",
+    exerciseName: "",
+    date: "",
+    sets: "",
+    reps: "",
+    weight: "",
+  });
+  const [serverFeedback, setServerFeedback] = useState("");
+  const { msId } = useParams();
 
-        const exerciseData = {
-            exerciseName: formData.exerciseName,
-            date_of_exercise: formData.date,
-            sets: formData.sets,
-            reps: formData.reps,
-            weight: formData.weight,
-          };
-          fetch("http://localhost:5000/save_muscle_building", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(exerciseData),
-          })
-            .then((response) => response.text())
-            .then((data) => {
-             setServerFeedback(data);
-              // Clear the form after successful submission
-              setFormData({
-                exerciseName: "",
-                date: "",
-                sets: "",
-                reps: "",
-                weight: "",
-                
-              });
-            })
-            .catch((error) => console.error("Error submitting form:", error));
-        };
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData({ ...formData, [id]: value });
+  };
 
+  const generateReport = (e) => {
+    e.preventDefault();
+
+    const exerciseData = {
+      msId:msId,
+      exerciseName: formData.exerciseName,
+      date_of_exercise: formData.date,
+      sets: formData.sets,
+      reps: formData.reps,
+      weight: formData.weight,
+    };
+    fetch("http://localhost:5000/save_muscle_building", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(exerciseData),
+    })
+      .then((response) => response.text())
+      .then((data) => {
+        setServerFeedback(data);
+        setFormData({
+          exerciseName: "",
+          date: "",
+          sets: "",
+          reps: "",
+          weight: "",
+        });
+      })
+      .catch((error) => console.error("Error submitting form:", error));
+  };
   
     
       return (
+        <>
+        <Layout/>
+        <div className="container mt-5">
+        <h1 className="text-center mb-4">Update Muscle Data </h1>
+   
+      
         <div className="container mt-6" style={{ maxWidth: "1200px" }} >
         <div className="cover-card px-3 mt-2">
           <h2 className="cover-title py-3">Muscle Exercise Report</h2>
           <form onSubmit={generateReport}  className="reg-group" >
             <div className="row">
+            <div className="col-md-3 mb-3">
+                  <label htmlFor="msId">User ID (msId)</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="msId"
+                    value={msId}
+                    readOnly
+                  />
+                </div>
               <div className="col-md-3 mb-3">
                 <label htmlFor="exerciseName">Exercise Name</label>
                 <select
@@ -136,7 +150,9 @@ const  Muscle = () => {
           </div>
           </form>
           </div>
+          </div>
         </div>
+        </>
       );
     };
 

@@ -16,14 +16,27 @@ const Signup = () => {
     setFormData({ ...formData, [id]: value });
   };
 
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.password !== formData.cnfpassword) {
-      setServerFeedback("Passwords do not match.");
+  
+    // Validate all fields
+    if (
+      formData.msId === "" ||
+      formData.username === "" ||
+      formData.password === "" ||
+      formData.cnfpassword === ""
+    ) {
+      setServerFeedback("Kindly Enter all fields.");
       return;
     }
-
-
+  
+    if (formData.password !== formData.cnfpassword) {
+      setServerFeedback("Passwords Mismatch.");
+      return;
+    }
+  
     fetch("http://localhost:5000/signup", {
       method: "POST",
       headers: {
@@ -35,32 +48,36 @@ const Signup = () => {
         password: formData.password,
       }),
     })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json();
-    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.text();
+      })
       .then((data) => {
-        if (data.error) {
-          setServerFeedback(data.error); // Display the error message
+        if (data.includes("signup successful!")) {
+          setServerFeedback("Signup successful!");
         } else {
-          setServerFeedback(data);
-
+          setServerFeedback(data); // Display other error messages
+        }
+  
         setFormData({
           msId: "",
           username: "",
           password: "",
-          cnfpassword:"",
+          cnfpassword: "",
         });
-      }
       })
-
       .catch((error) => {
-       console.error("Error submitting form:", error);
-      setServerFeedback("Register Sucessfully.");
-  });
-};
+        if (error.message.includes("HTTP error! Status: 500")) {
+          setServerFeedback("Contact Admin to Register");
+        } else {
+          setServerFeedback("Error submitting form: " + error.message);
+        }
+      });
+  };
+  
+  
 
   return (
     <>
@@ -130,10 +147,15 @@ const Signup = () => {
             >
               Sign Up
             </button>
-          </div>
-          <div className="mt-3 text-center">
-            <p>{serverFeedback}</p>
-          </div>
+            </div>
+            <div className="mt-3 text-center">
+     
+              {serverFeedback && (
+                <p className={serverFeedback.includes("error") ? "text-danger" : "text-success"}>
+                  {serverFeedback}
+                </p>
+              )}
+            </div>
         </form>
       </div>
     </div>

@@ -8,11 +8,18 @@ import Signup from "./components/routes/Signup";
 import Homepage from "./components/routes/Homepage";
 import AddRegister from "./components/routes/crud/AddRegister";
 import ViewRegister from "./components/routes/crud/ViewRegister";
-import UpdateRegister from "./components/routes/crud/UpdateRegister";
-import DeleteRegister from "./components/routes/crud/DeleteRegister";
+import ViewSignUp from "./components/routes/crud/ViewSignUp";
+import Muscle from "../src/report/Muscle";
+import Cardio from "../src/report/Cardio";
+import Yoga from "../src/report/Stretch";
+import DailyMuscleReport from "./report/DailyMuscleReport";
+import WeeklyMuscleReport from "./report/WeeklyMuscleReport";
+import MonthlyMuscleReport from "./report/MonthlyMuscleReport";
+
 
 
 function App() {
+
   return (
     <>
       <Router>
@@ -22,10 +29,15 @@ function App() {
           <Route path="/login" element={<UserLogin />} />
           <Route path="/report" element={<UserReport />} />
           <Route path="/register/*" element={<RegisterComponent />} />
-          <Route path="/add" element={<AddRegister />} />
-          <Route path="view" element={<ViewRegister />} />
-            <Route path="update" element={<UpdateRegister />} />
-            <Route path="delete" element={<DeleteRegister />} />        
+          <Route path="/user-registration" element={<AddRegister />} />
+          <Route path="/view-registration" element={<ViewRegister />} />
+          <Route path="/view-signup" element={<ViewSignUp />} />
+          <Route path="/update-muscle/:msId" element={<Muscle />} />
+          <Route path="/update-cardio/:msId" element={<Cardio />} />
+          <Route path="/update-yoga/:msId" element={<Yoga />} />
+          <Route path="/daily-muscle-report/:msId" element={<DailyMuscleReport />} />
+          <Route path="/weekly-muscle-report/:msId" element={<WeeklyMuscleReport/>} />
+          <Route path="/monthly-muscle-report/:msId" element={<MonthlyMuscleReport/>} />
         </Routes>
          </Router>
     </>

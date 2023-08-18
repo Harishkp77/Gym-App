@@ -28,6 +28,7 @@ db.connect((err) => {
 // Route to handle form submission and save data to MySQL
 app.post("/register", (req, res) => {
   const registrationData = req.body;
+  console.log(registrationData);
 
   const sqlquery = "INSERT INTO registrations SET ?";
   db.query(sqlquery, registrationData, (err, result) => {
@@ -52,6 +53,46 @@ app.post("/signup", (req, res) => {
     }
     console.log("signup data inserted:", result);
     res.send("signup successful!");
+  });
+});
+
+app.get('/getSignUpData', (req, res) => {
+  const sqlQuery = 'SELECT * FROM signup';
+
+  db.query(sqlQuery, (err, results) => {
+    if (err) {
+      console.error('Error fetching data:', err);
+      res.status(500).json({ error: 'An error occurred while fetching data' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+
+app.post("/checkLogin", (req, res) => {
+  const { username, password } = req.body;
+
+  const query = `
+    SELECT r.first_name, r.last_name, s.msId
+    FROM signup AS s
+    JOIN registrations AS r ON r.ms_id = s.msId
+    WHERE s.username = ? AND s.password = ?
+  `;
+
+  db.query(query, [username, password], (err, results) => {
+    if (err) {
+      console.error("Database query error:", err);
+      res.status(500).json({ error: "An error occurred while checking login." });
+      return;
+    }
+
+    if (results.length > 0) {
+      const userData = results[0];
+      res.json({ valid: true, msId: userData.msId, firstName: userData.first_name, lastName: userData.last_name });
+    } else {
+      res.json({ valid: false });
+    }
   });
 });
 
@@ -102,6 +143,27 @@ app.get('/getregistrations', (req, res) => {
   });
 });
 
+
+
+app.get("/daily-muscle-report/:msId", (req, res) => {
+  const msId = req.params.msId;
+
+  // Fetch muscle exercise data from the database for the specified msId
+  const query = `
+    SELECT * 
+    FROM muscle_building 
+    WHERE msId = ?;
+  `;
+
+  db.query(query, [msId], (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: "An error occurred" });
+    } else {
+      res.json(results);
+    }
+  });
+});
 
 
 
