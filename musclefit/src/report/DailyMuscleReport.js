@@ -17,39 +17,39 @@ const DailyMuscleReport = () => {
 
   return (
     <>
-   <Layout/>
-    <div className="container mt-5">
-      <h1 className="text-center mb-4">Daily Muscle Exercise Report</h1>
-      <div className="row">
-       <div className="table-responsive">
-        <table className="table table-bordered">
-          <thead>
-            <tr>
-              <th>Exercise Name</th>
-              <th>Date</th>
-              <th>Sets</th>
-              <th>Reps</th>
-              <th>Weight</th>
-            </tr>
-          </thead>
-          <tbody>
-            {muscleData.map((exercise, index) => (
-              <tr key={index}>
-                <td>{exercise.exerciseName}</td>
-                <td>{exercise.date_of_exercise}</td>
-                <td>{exercise.sets}</td>
-                <td>{exercise.reps}</td>
-                <td>{exercise.weight}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        {muscleData.length === 0 && (
-          <p className="text-center">No muscle exercise data available for today.</p>
-        )}
+      <Layout />
+      <div className="container mt-5">
+        <h1 className="text-center mb-4">Daily Muscle Exercise Report</h1>
+        <div className="row">
+          <div className="table-responsive">
+            <table className="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Exercise Name</th>
+                  <th>Date</th>
+                  <th>Sets</th>
+                  <th>Reps</th>
+                  <th>Weight</th>
+                </tr>
+              </thead>
+              <tbody>
+                {muscleData.map((exercise, index) => (
+                  <tr key={index}>
+                    <td>{exercise.exerciseName}</td>
+                    <td>{new Date(exercise.date_of_exercise).toLocaleDateString()}</td>
+                    <td>{exercise.sets}</td>
+                    <td>{exercise.reps}</td>
+                    <td>{exercise.weight}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            {muscleData.length === 0 && (
+              <p className="text-center">No muscle exercise data available for today.</p>
+            )}
+          </div>
+        </div>
       </div>
-    </div>
-    </div>
     </>
   );
 };

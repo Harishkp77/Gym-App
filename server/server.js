@@ -167,5 +167,49 @@ app.get("/daily-muscle-report/:msId", (req, res) => {
 
 
 
+// Route to fetch weekly muscle exercise report
+app.get('/weekly-muscle-report/:msId', (req, res) => {
+  const { msId } = req.params;
+  const query = `
+    SELECT exerciseName, SUM(sets) AS totalSets, SUM(reps) AS totalReps, SUM(weight) AS totalWeight
+    FROM muscle_building
+    WHERE msId = ? AND date_of_exercise BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE()
+    GROUP BY exerciseName
+  `;
+  
+  db.query(query, [msId], (err, results) => {
+    if (err) {
+      console.error('Error fetching data:', err);
+      res.status(500).json({ error: 'Error fetching data' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// Route to fetch monthly muscle exercise report
+app.get('/monthly-muscle-report/:msId', (req, res) => {
+  const { msId } = req.params;
+  const query = `
+    SELECT exerciseName, SUM(sets) AS totalSets, SUM(reps) AS totalReps, SUM(weight) AS totalWeight
+    FROM muscle_building
+    WHERE msId = ? AND date_of_exercise BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE()
+    GROUP BY exerciseName
+  `;
+  
+  db.query(query, [msId], (err, results) => {
+    if (err) {
+      console.error('Error fetching data:', err);
+      res.status(500).json({ error: 'Error fetching data' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+
+
+
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
