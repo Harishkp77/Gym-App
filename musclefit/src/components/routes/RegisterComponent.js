@@ -43,7 +43,7 @@ const RegisterComponent = () => {
             </div>
           </div>
           <div className="col-lg-4 col-md-6 mb-4">
-            <div className="card bg-warning text-white h-100">
+          <div className="card bg-primary text-white h-100">
               <div className="card-body text-center">
                 <h2>User Data</h2>
                 <p>Explore muscle user data</p>
@@ -54,7 +54,7 @@ const RegisterComponent = () => {
             </div>
           </div>
           <div className="col-lg-4 col-md-6 mb-4">
-            <div className="card bg-warning text-white h-100">
+          <div className="card bg-success text-white h-100">
               <div className="card-body text-center">
                 <h2>User Data</h2>
                 <p>Explore cardio user data</p>
