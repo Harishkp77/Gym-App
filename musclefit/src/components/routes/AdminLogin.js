@@ -4,7 +4,7 @@ import Layout from "./Layout";
 
 
 
-const AdminLogin = () => {
+const AdminLogin = ({ setIsAdminAuthenticated }) => {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -23,7 +23,8 @@ const AdminLogin = () => {
     }
     
     else if (username === "admin" && password === "1111") {
-      navigate("/register");
+      setIsAdminAuthenticated(true);
+      navigate("/register/allow");
     } else if (username === "admin") {
       setErrorMessage("Invalid password.");
     } else if (password === "1111") {

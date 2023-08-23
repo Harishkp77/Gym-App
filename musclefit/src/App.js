@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Routes,Navigate } from "react-router-dom";
 import AdminLogin from "./components/routes/AdminLogin";
 import UserLogin from "./components/routes/UserLogin";
 import RegisterComponent from "./components/routes/RegisterComponent";
@@ -19,20 +19,36 @@ import ViewMuscle from "./components/routes/crud/ViewMuscle";
 import ViewCardio from "./components/routes/crud/ViewCardio";
 import ViewYoga from "./components/routes/crud/ViewYoga";
 
-
-
 function App() {
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
 
   return (
     <>
       <Router>
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/admin" element={<AdminLogin />} />        
+          <Route
+            path="/admin"
+            element={
+              <AdminLogin setIsAdminAuthenticated={setIsAdminAuthenticated} />
+            }
+          />
+
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<UserLogin />} />
           <Route path="/report" element={<UserReport />} />
-          <Route path="/register/*" element={<RegisterComponent />} />
+
+          <Route
+            path="/register/allow"
+            element={
+              isAdminAuthenticated ? (
+                <RegisterComponent />
+              ) : (
+                <Navigate to="/admin" />
+              )
+            }
+          />
+
           <Route path="/user-registration" element={<AddRegister />} />
           <Route path="/view-registration" element={<ViewRegister />} />
           <Route path="/view-signup" element={<ViewSignUp />} />
@@ -42,11 +58,20 @@ function App() {
           <Route path="/update-muscle/:msId" element={<Muscle />} />
           <Route path="/update-cardio/:msId" element={<Cardio />} />
           <Route path="/update-yoga/:msId" element={<Yoga />} />
-          <Route path="/daily-muscle-report/:msId" element={<DailyMuscleReport />} />
-          <Route path="/weekly-muscle-report/:msId" element={<WeeklyMuscleReport/>} />
-          <Route path="/monthly-muscle-report/:msId" element={<MonthlyMuscleReport/>} />
+          <Route
+            path="/daily-muscle-report/:msId"
+            element={<DailyMuscleReport />}
+          />
+          <Route
+            path="/weekly-muscle-report/:msId"
+            element={<WeeklyMuscleReport />}
+          />
+          <Route
+            path="/monthly-muscle-report/:msId"
+            element={<MonthlyMuscleReport />}
+          />
         </Routes>
-         </Router>
+      </Router>
     </>
   );
 }
