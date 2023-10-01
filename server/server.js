@@ -170,7 +170,7 @@ app.get("/daily-muscle-report/:msId", (req, res) => {
 app.get('/weekly-muscle-report/:msId', (req, res) => {
   const { msId } = req.params;
   const query = `
-    SELECT exerciseName, SUM(sets) AS totalSets, SUM(reps) AS totalReps, SUM(weight) AS totalWeight
+    SELECT exerciseName, SUM(sets) AS totalSets, SUM(reps) AS totalReps
     FROM muscle_building
     WHERE msId = ? AND date_of_exercise BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE()
     GROUP BY exerciseName
@@ -190,7 +190,7 @@ app.get('/weekly-muscle-report/:msId', (req, res) => {
 app.get('/monthly-muscle-report/:msId', (req, res) => {
   const { msId } = req.params;
   const query = `
-    SELECT exerciseName, SUM(sets) AS totalSets, SUM(reps) AS totalReps, SUM(weight) AS totalWeight
+    SELECT exerciseName, SUM(sets) AS totalSets, SUM(reps) AS totalReps
     FROM muscle_building
     WHERE msId = ? AND date_of_exercise BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE()
     GROUP BY exerciseName

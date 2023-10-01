@@ -29,7 +29,7 @@ const WeeklyMuscleReport = () => {
                  
                   <th>Total Sets</th>
                   <th>Total Reps</th>
-                  <th>Total Weight</th>
+               
                 </tr>
               </thead>
               <tbody>
@@ -38,7 +38,7 @@ const WeeklyMuscleReport = () => {
                     <td>{week.exerciseName}</td>
                     <td>{week.totalSets}</td>
                     <td>{week.totalReps}</td>
-                    <td>{week.totalWeight}</td>
+                
                   </tr>
                 ))}
               </tbody>

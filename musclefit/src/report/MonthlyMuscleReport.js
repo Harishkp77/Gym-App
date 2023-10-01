@@ -28,7 +28,7 @@ const MonthlyMuscleReport = () => {
                   <th>Exercise Name</th>
                   <th>Total Sets</th>
                   <th>Total Reps</th>
-                  <th>Total Weight</th>
+           
                 </tr>
               </thead>
               <tbody>
@@ -37,7 +37,7 @@ const MonthlyMuscleReport = () => {
                     <td>{month.exerciseName}</td>
                     <td>{month.totalSets}</td>
                     <td>{month.totalReps}</td>
-                    <td>{month.totalWeight}</td>
+                
                   </tr>
                 ))}
               </tbody>
