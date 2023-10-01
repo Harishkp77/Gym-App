@@ -30,7 +30,7 @@ const ViewMuscle = () => {
                   <th>Date</th>
                   <th>Sets</th>
                   <th>Reps</th>
-                  <th>Weight</th>
+           
                 </tr>
               </thead>
               <tbody>
@@ -42,7 +42,7 @@ const ViewMuscle = () => {
                     <td>{row.date_of_exercise}</td>
                     <td>{row.sets}</td>
                     <td>{row.reps}</td>
-                    <td>{row.weight}</td>
+                   
                   </tr>
                 ))}
               </tbody>

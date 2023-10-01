@@ -42,7 +42,7 @@ CREATE TABLE signup (
 select * from muscle_building;
 
 CREATE TABLE muscle_building (
-  id INT AUTO_INCREMENT PRIMARY KEY,
+  msId INT PRIMARY KEY,
   exerciseName VARCHAR(255) NOT NULL,
   date_of_exercise DATE NOT NULL,
   sets INT NOT NULL,
@@ -52,9 +52,8 @@ CREATE TABLE muscle_building (
 
 
 
-
 CREATE TABLE exercise_reports (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    msId INT PRIMARY KEY,
     exercise_name VARCHAR(255) NOT NULL,
     date_of_exercise DATE NOT NULL,
     duration_minutes INT NOT NULL,
@@ -64,13 +63,14 @@ CREATE TABLE exercise_reports (
 
 
 CREATE TABLE cardio_exercise (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    MsId INT PRIMARY KEY,
     exercise_name VARCHAR(255) NOT NULL,
     date_of_exercise DATE NOT NULL,
     duration_minutes INT NOT NULL,
     distance_km DECIMAL(10, 2) NOT NULL,
     calories_burned INT NOT NULL
 );
+
 
 
 

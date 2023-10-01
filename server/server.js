@@ -111,7 +111,7 @@ app.post("/save_muscle_building", (req, res) => {
 app.post("/save_cardio", (req, res) => {
   const cardiostrengthData = req.body;
 
-  const sqlquery = "INSERT INTO cardio_exercise SET ?";
+  const sqlquery = "INSERT INTO cardio_exercises SET ?";
   db.query(sqlquery, cardiostrengthData, (err, result) => {
     if (err) throw err;
     console.log("Registration data inserted:", result);
@@ -122,7 +122,7 @@ app.post("/save_cardio", (req, res) => {
 app.post("/save_yoga_stretching", (req, res) => {
   const stretchyogaData  = req.body;
 
-  const sqlquery = "INSERT INTO exercise_reports SET ?";
+  const sqlquery = "INSERT INTO yoga_exercises SET ?";
   db.query(sqlquery, stretchyogaData , (err, result) => {
     if (err) throw err;
     console.log("Registration data inserted:", result);
@@ -230,7 +230,7 @@ app.get('/getCardioExerciseData', (req, res) => {
   // Fetch cardio exercise data from the database
   const query = `
     SELECT * 
-    FROM cardio_exercise;
+    FROM cardio_exercises;
   `;
 
   db.query(query, (err, results) => {
@@ -248,7 +248,7 @@ app.get("/getYogaExerciseData", (req, res) => {
   // Fetch yoga exercise data from the database
   const query = `
     SELECT *
-    FROM exercise_reports
+    FROM yoga_exercises
     WHERE exercise_name IN ('Yoga', 'Stretching');
   `;
 
